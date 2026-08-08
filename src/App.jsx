@@ -14,12 +14,32 @@ function Home() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <Journey />
-      <Projects />
-      <Toolbox />
-      <About />
-      <Contact />
+
+      <main>
+        <section id="home">
+          <Hero />
+        </section>
+
+        <section id="journey">
+          <Journey />
+        </section>
+
+        <section id="projects">
+          <Projects />
+        </section>
+
+        <section id="toolbox">
+          <Toolbox />
+        </section>
+
+        <section id="about">
+          <About />
+        </section>
+
+        <section id="contact">
+          <Contact />
+        </section>
+      </main>
     </>
   );
 }
