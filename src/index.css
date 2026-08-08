@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+:root {
+  --forge-black: #050505;
+  --forge-surface: #111113;
+  --forge-steel: #18181b;
+
+  --forge-white: #f4f4f5;
+  --forge-muted: #71717a;
+
+  --forge-amber: #fbbf24;
+  --forge-red: #a62c2c;
+
+  --forge-border: #27272a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--forge-black);
+  color: var(--forge-white);
+  font-family: Arial, Helvetica, sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--forge-red);
+  color: white;
+}
+
+/* ================================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--forge-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--forge-steel);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--forge-red);
+}
+
+/* ================================
+   ANIMATIONS
+================================ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ================================
+   REDUCED MOTION
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
