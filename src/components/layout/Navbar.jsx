@@ -1,30 +1,25 @@
 import { useEffect, useState } from "react";
 
+const menuItems = [
+  { label: "Home", href: "#home" },
+  { label: "Journey", href: "#journey" },
+  { label: "Projects", href: "#projects" },
+  { label: "Toolbox", href: "#toolbox" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  const menuItems = [
-    { label: "Home", href: "#home" },
-    { label: "Journey", href: "#journey" },
-    { label: "Projects", href: "#projects" },
-    { label: "Toolbox", href: "#toolbox" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
-  ];
 
   useEffect(() => {
+    const sections = menuItems
+      .map((item) => document.querySelector(item.href))
+      .filter(Boolean);
+
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-
-      setIsScrolled(scrollY > 40);
-
-      const sections = menuItems
-        .map((item) => document.querySelector(item.href))
-        .filter(Boolean);
-
-      const scrollPosition = scrollY + 200;
+      const scrollPosition = window.scrollY + 200;
 
       let currentSection = "home";
 
@@ -34,10 +29,14 @@ function Navbar() {
         }
       });
 
-      setActiveSection(currentSection);
+      setActiveSection((previousSection) =>
+        previousSection === currentSection ? previousSection : currentSection,
+      );
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     handleScroll();
 
@@ -46,68 +45,48 @@ function Navbar() {
     };
   }, []);
 
-  const handleMobileClick = () => {
+  const handleNavigation = () => {
     setIsOpen(false);
   };
 
   return (
-    <header
-      className={`fixed left-0 top-0 z-50 w-full border-b transition-all duration-300 ${
-        isScrolled
-          ? "border-zinc-800/80 bg-black/90 backdrop-blur-md"
-          : "border-transparent bg-black"
-      }`}
-    >
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
-        {/* ================= LOGO ================= */}
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-zinc-900 bg-black/90 backdrop-blur-md">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
+        {/* Logo */}
 
         <a
           href="#home"
-          className="group text-sm font-black tracking-[0.2em] text-white transition duration-300"
+          onClick={handleNavigation}
+          className="text-sm font-black tracking-[0.2em] text-white"
         >
-          FORGED IN{" "}
-          <span className="text-[#A62C2C] transition duration-300 group-hover:text-red-400">
-            CODE.
-          </span>
+          FORGED IN <span className="text-amber-400">CODE.</span>
         </a>
 
-        {/* ================= DESKTOP MENU ================= */}
+        {/* Desktop Menu */}
 
         <ul className="hidden items-center gap-8 md:flex">
-          {menuItems.map((item) => {
-            const sectionName = item.href.substring(1);
-            const isActive = activeSection === sectionName;
-
-            return (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  className={`relative py-2 text-sm transition-colors duration-300 ${
-                    isActive
-                      ? "text-[#A62C2C]"
-                      : "text-gray-500 hover:text-white"
-                  }`}
-                >
-                  {item.label}
-
-                  {/* Active indicator */}
-
-                  <span
-                    className={`absolute -bottom-1 left-0 h-px bg-[#A62C2C] transition-all duration-300 ${
-                      isActive ? "w-full" : "w-0"
-                    }`}
-                  />
-                </a>
-              </li>
-            );
-          })}
+          {menuItems.map((item) => (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                className={`text-sm transition-colors duration-300 ${
+                  activeSection === item.href.substring(1)
+                    ? "text-amber-400"
+                    : "text-gray-400 hover:text-amber-400"
+                }`}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
 
-        {/* ================= MOBILE BUTTON ================= */}
+        {/* Mobile Button */}
 
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-2xl text-white transition duration-300 hover:text-[#A62C2C] md:hidden"
+          type="button"
+          onClick={() => setIsOpen((previous) => !previous)}
+          className="text-2xl text-white md:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
         >
@@ -115,46 +94,29 @@ function Navbar() {
         </button>
       </nav>
 
-      {/* ================= MOBILE MENU ================= */}
+      {/* Mobile Menu */}
 
-      <div
-        className={`overflow-hidden border-t border-zinc-900 bg-black transition-all duration-300 md:hidden ${
-          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <ul className="space-y-1 px-6 py-6">
-          {menuItems.map((item) => {
-            const sectionName = item.href.substring(1);
-            const isActive = activeSection === sectionName;
-
-            return (
+      {isOpen && (
+        <div className="border-t border-zinc-900 bg-black px-6 py-8 md:hidden">
+          <ul className="space-y-6">
+            {menuItems.map((item) => (
               <li key={item.label}>
                 <a
                   href={item.href}
-                  onClick={handleMobileClick}
-                  className={`flex items-center justify-between border-b border-zinc-900 py-4 text-lg font-semibold transition duration-300 ${
-                    isActive
-                      ? "text-[#A62C2C]"
-                      : "text-gray-300 hover:text-white"
+                  onClick={handleNavigation}
+                  className={`block text-lg font-semibold transition-colors duration-300 ${
+                    activeSection === item.href.substring(1)
+                      ? "text-amber-400"
+                      : "text-gray-300 hover:text-amber-400"
                   }`}
                 >
-                  <span>{item.label}</span>
-
-                  <span
-                    className={`text-sm transition duration-300 ${
-                      isActive
-                        ? "translate-x-0 text-[#A62C2C]"
-                        : "-translate-x-2 text-gray-700"
-                    }`}
-                  >
-                    →
-                  </span>
+                  {item.label}
                 </a>
               </li>
-            );
-          })}
-        </ul>
-      </div>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   );
 }
