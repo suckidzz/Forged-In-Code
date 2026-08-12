@@ -1,5 +1,3 @@
-import Navbar from "../components/layout/Navbar";
-
 import Hero from "../components/sections/Hero";
 import Journey from "../components/sections/Journey";
 import Projects from "../components/sections/Projects";
@@ -9,18 +7,14 @@ import Contact from "../components/sections/Contact";
 
 function Home() {
   return (
-    <>
-      <Navbar />
-
-      <main>
-        <Hero />
-        <Journey />
-        <Projects />
-        <Toolbox />
-        <About />
-        <Contact />
-      </main>
-    </>
+    <main>
+      <Hero />
+      <Journey />
+      <Projects />
+      <Toolbox />
+      <About />
+      <Contact />
+    </main>
   );
 }
 
