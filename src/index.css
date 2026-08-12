@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* ================================
+   FORGED IN CODE — DESIGN TOKENS
+================================ */
+
 :root {
   --forge-black: #050505;
   --forge-surface: #111113;
@@ -14,19 +18,22 @@
   --forge-border: #27272a;
 }
 
+/* ================================
+   GLOBAL
+================================ */
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  background: var(--forge-black);
-  color: var(--forge-white);
-  font-family: Arial, Helvetica, sans-serif;
-
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  background: #000;
 }
+
+/* ================================
+   TEXT SELECTION
+================================ */
 
 ::selection {
   background: var(--forge-red);
@@ -80,7 +87,7 @@ body {
 }
 
 /* ================================
-   REDUCED MOTION
+   ACCESSIBILITY
 ================================ */
 
 @media (prefers-reduced-motion: reduce) {

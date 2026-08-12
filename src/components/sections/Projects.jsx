@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ScrollReveal from "../ui/ScrollReveal";
 
 function Projects() {
@@ -27,7 +28,7 @@ function Projects() {
         "Developed a web platform combining workshop service management and e-commerce functionality.",
       tech: ["Laravel", "PHP", "MySQL", "Tailwind CSS"],
       status: "DEVELOPMENT",
-      link: "#",
+      link: null,
     },
 
     {
@@ -41,36 +42,85 @@ function Projects() {
         "Built an IoT monitoring system using ESP32 sensors and an online dashboard to visualize collected data.",
       tech: ["ESP32", "MQ135", "DHT22", "ThingSpeak"],
       status: "COMPLETED",
-      link: "#",
+      link: null,
     },
   ];
 
   return (
     <section
       id="projects"
-      className="min-h-screen bg-black px-6 py-32 text-white md:px-10"
+      className="
+        relative
+        overflow-hidden
+        border-t
+        border-zinc-900
+        px-6
+        py-24
+        sm:px-8
+        sm:py-32
+        md:px-12
+        lg:px-16
+        lg:py-40
+      "
     >
-      <div className="mx-auto max-w-6xl">
-        {/* ================= HEADER ================= */}
+      <div className="mx-auto w-full max-w-7xl">
+        {/* ================================================= */}
+        {/* HEADER */}
+        {/* ================================================= */}
 
         <ScrollReveal>
-          <div className="mb-20">
-            <p className="text-xs tracking-[0.4em] text-[#A62C2C]">
+          <div className="mb-20 sm:mb-24">
+            <p
+              className="
+                flex
+                items-center
+                gap-3
+                text-xs
+                font-semibold
+                tracking-[0.3em]
+                text-[#A62C2C]
+                sm:tracking-[0.4em]
+              "
+            >
+              <span className="h-px w-8 shrink-0 bg-[#A62C2C]" />
               PROJECTS / MACHINES BUILT
             </p>
 
-            <h2 className="mt-6 text-5xl font-black leading-none sm:text-6xl md:text-8xl">
+            <h2
+              className="
+                mt-6
+                text-5xl
+                font-black
+                leading-[0.9]
+                tracking-[-0.04em]
+                text-white
+                sm:text-6xl
+                md:text-7xl
+                lg:text-8xl
+              "
+            >
               BUILT.
             </h2>
 
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-400">
+            <p
+              className="
+                mt-6
+                max-w-2xl
+                text-base
+                leading-8
+                text-gray-400
+                sm:text-lg
+              "
+            >
               Every project is a machine built from ideas, problems,
               experiments, failures, and lessons learned along the way.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* ================= PROJECT LIST ================= */}
+        {/* ================================================= */}
+        {/* PROJECT LIST */}
+        {/* ================================================= */}
 
         <div className="space-y-8">
           {projects.map((project, index) => (
@@ -79,62 +129,84 @@ function Projects() {
                 className="
                   group
                   relative
+                  w-full
                   overflow-hidden
                   border
                   border-zinc-800
-                  bg-zinc-950
                   p-6
                   transition-all
                   duration-500
                   hover:-translate-y-1
                   hover:border-[#A62C2C]
+                  sm:p-8
                   md:p-10
                 "
               >
-                {/* Accent Line */}
+                {/* TOP ACCENT */}
 
                 <div
                   className="
                     absolute
                     left-0
                     top-0
-                    h-full
-                    w-0.5
+                    h-px
+                    w-0
                     bg-[#A62C2C]
-                    opacity-0
-                    transition-opacity
+                    transition-all
                     duration-500
-                    group-hover:opacity-100
+                    group-hover:w-full
                   "
                 />
 
-                {/* ================= TOP ================= */}
+                {/* ================================================= */}
+                {/* PROJECT HEADER */}
+                {/* ================================================= */}
 
-                <div className="flex items-start justify-between">
-                  <span className="font-mono text-sm text-[#A62C2C]">
+                <div className="flex items-start justify-between gap-6">
+                  <span
+                    className="
+                      shrink-0
+                      font-mono
+                      text-sm
+                      text-[#A62C2C]
+                    "
+                  >
                     {project.number}
                   </span>
 
                   <span
-                    className={`text-xs tracking-[0.2em] ${
-                      project.status === "DEVELOPMENT"
-                        ? "text-[#A62C2C]"
-                        : "text-gray-600"
-                    }`}
+                    className={`
+                      text-right
+                      text-[10px]
+                      font-semibold
+                      tracking-[0.15em]
+                      sm:text-xs
+                      sm:tracking-[0.2em]
+                      ${
+                        project.status === "DEVELOPMENT"
+                          ? "text-[#A62C2C]"
+                          : "text-gray-600"
+                      }
+                    `}
                   >
                     {project.status}
                   </span>
                 </div>
 
-                {/* ================= TITLE ================= */}
+                {/* ================================================= */}
+                {/* TITLE */}
+                {/* ================================================= */}
 
                 <h3
                   className="
                     mt-8
                     max-w-4xl
+                    break-words
                     text-3xl
                     font-black
-                    leading-tight
+                    leading-[0.95]
+                    tracking-[-0.03em]
+                    text-white
                     transition-colors
                     duration-300
                     group-hover:text-gray-100
@@ -145,52 +217,115 @@ function Projects() {
                   {project.title}
                 </h3>
 
-                {/* ================= DESCRIPTION ================= */}
+                {/* ================================================= */}
+                {/* DESCRIPTION */}
+                {/* ================================================= */}
 
-                <p className="mt-6 max-w-3xl text-base leading-8 text-gray-400 md:text-lg">
+                <p
+                  className="
+                    mt-6
+                    max-w-3xl
+                    text-base
+                    leading-8
+                    text-gray-400
+                    sm:text-lg
+                  "
+                >
                   {project.description}
                 </p>
 
-                {/* ================= PROBLEM / BUILD ================= */}
+                {/* ================================================= */}
+                {/* PROBLEM / BUILD */}
+                {/* ================================================= */}
 
-                <div className="mt-10 grid gap-8 border-y border-zinc-900 py-8 md:grid-cols-2">
-                  {/* Problem */}
+                <div
+                  className="
+                    mt-10
+                    grid
+                    gap-8
+                    border-y
+                    border-zinc-900
+                    py-8
+                    md:grid-cols-2
+                    md:gap-10
+                  "
+                >
+                  {/* PROBLEM */}
 
-                  <div>
-                    <p className="text-xs tracking-[0.3em] text-[#A62C2C]">
+                  <div className="min-w-0">
+                    <p
+                      className="
+                        text-[10px]
+                        font-semibold
+                        tracking-[0.25em]
+                        text-[#A62C2C]
+                        sm:text-xs
+                        sm:tracking-[0.3em]
+                      "
+                    >
                       THE PROBLEM
                     </p>
 
-                    <p className="mt-4 max-w-xl leading-7 text-gray-500">
+                    <p
+                      className="
+                        mt-4
+                        max-w-xl
+                        text-sm
+                        leading-7
+                        text-gray-500
+                        sm:text-base
+                      "
+                    >
                       {project.problem}
                     </p>
                   </div>
 
-                  {/* Solution */}
+                  {/* BUILD */}
 
-                  <div>
-                    <p className="text-xs tracking-[0.3em] text-amber-400">
+                  <div className="min-w-0">
+                    <p
+                      className="
+                        text-[10px]
+                        font-semibold
+                        tracking-[0.25em]
+                        text-amber-400
+                        sm:text-xs
+                        sm:tracking-[0.3em]
+                      "
+                    >
                       THE BUILD
                     </p>
 
-                    <p className="mt-4 max-w-xl leading-7 text-gray-500">
+                    <p
+                      className="
+                        mt-4
+                        max-w-xl
+                        text-sm
+                        leading-7
+                        text-gray-500
+                        sm:text-base
+                      "
+                    >
                       {project.solution}
                     </p>
                   </div>
                 </div>
 
-                {/* ================= TECHNOLOGIES ================= */}
+                {/* ================================================= */}
+                {/* TECHNOLOGIES */}
+                {/* ================================================= */}
 
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div className="mt-8 flex flex-wrap gap-2 sm:gap-3">
                   {project.tech.map((technology) => (
                     <span
                       key={technology}
                       className="
+                        max-w-full
                         border
                         border-zinc-800
                         px-3
                         py-2
-                        text-xs
+                        text-[10px]
                         tracking-wide
                         text-gray-400
                         transition-all
@@ -199,6 +334,7 @@ function Projects() {
                         group-hover:text-gray-300
                         hover:border-[#A62C2C]
                         hover:text-white
+                        sm:text-xs
                       "
                     >
                       {technology}
@@ -206,25 +342,28 @@ function Projects() {
                   ))}
                 </div>
 
-                {/* ================= ACTION ================= */}
+                {/* ================================================= */}
+                {/* ACTION */}
+                {/* ================================================= */}
 
                 <div className="mt-10">
-                  {project.link !== "#" ? (
-                    <a
-                      href={project.link}
+                  {project.link ? (
+                    <Link
+                      to={project.link}
                       aria-label={`View ${project.title} project`}
                       className="
                         group/button
                         inline-flex
+                        max-w-full
                         items-center
                         gap-4
                         border
                         border-zinc-700
-                        px-6
+                        px-5
                         py-3
-                        text-sm
+                        text-xs
                         font-semibold
-                        tracking-widest
+                        tracking-[0.15em]
                         text-white
                         transition-all
                         duration-300
@@ -233,6 +372,9 @@ function Projects() {
                         hover:bg-amber-400
                         hover:text-black
                         active:translate-y-0
+                        sm:px-6
+                        sm:text-sm
+                        sm:tracking-widest
                       "
                     >
                       <span>VIEW PROJECT</span>
@@ -246,22 +388,25 @@ function Projects() {
                       >
                         →
                       </span>
-                    </a>
+                    </Link>
                   ) : (
                     <span
                       className="
                         inline-flex
+                        max-w-full
                         cursor-not-allowed
                         items-center
-                        gap-4
                         border
                         border-zinc-900
-                        px-6
+                        px-5
                         py-3
-                        text-sm
+                        text-[10px]
                         font-semibold
-                        tracking-widest
+                        tracking-[0.15em]
                         text-gray-700
+                        sm:px-6
+                        sm:text-xs
+                        sm:tracking-widest
                       "
                     >
                       PROJECT DETAIL COMING SOON
@@ -273,15 +418,45 @@ function Projects() {
           ))}
         </div>
 
-        {/* ================= CLOSING ================= */}
+        {/* ================================================= */}
+        {/* CLOSING */}
+        {/* ================================================= */}
 
         <ScrollReveal delay={300}>
-          <div className="mt-20 flex flex-col gap-4 border-t border-zinc-900 pt-8 sm:flex-row sm:items-center sm:justify-between">
-            <span className="text-xs tracking-[0.3em] text-gray-600">
+          <div
+            className="
+              mt-20
+              flex
+              flex-col
+              gap-4
+              border-t
+              border-zinc-900
+              pt-8
+              sm:flex-row
+              sm:items-center
+              sm:justify-between
+            "
+          >
+            <span
+              className="
+                text-[10px]
+                tracking-[0.25em]
+                text-gray-600
+                sm:text-xs
+                sm:tracking-[0.3em]
+              "
+            >
               BUILT THROUGH TRIAL & ERROR
             </span>
 
-            <span className="font-mono text-sm text-[#A62C2C]">
+            <span
+              className="
+                font-mono
+                text-xs
+                text-[#A62C2C]
+                sm:text-sm
+              "
+            >
               03 MACHINES / COUNTING...
             </span>
           </div>

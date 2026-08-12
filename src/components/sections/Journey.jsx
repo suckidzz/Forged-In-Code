@@ -32,40 +32,90 @@ function Journey() {
     <section
       id="journey"
       className="
-        min-h-screen
+        w-full
+        min-w-0
+        overflow-hidden
         bg-black
         px-6
-        py-32
-        text-white
-        md:px-10
+        py-24
+        sm:px-8
+        sm:py-28
+        md:px-12
+        md:py-32
+        lg:px-16
+        lg:py-36
       "
     >
-      <div className="mx-auto max-w-6xl">
-        {/* ================= HEADER ================= */}
+      <div className="mx-auto w-full max-w-7xl min-w-0">
+        {/* ================================================= */}
+        {/* HEADER */}
+        {/* ================================================= */}
 
         <ScrollReveal>
-          <div className="mb-24">
-            <p className="flex items-center gap-3 text-xs tracking-[0.4em] text-[#A62C2C]">
-              <span className="h-px w-8 bg-[#A62C2C]" />
-              JOURNEY / THE ROAD SO FAR
+          <div className="mb-20 max-w-4xl sm:mb-24">
+            {/* Section Label */}
+
+            <p
+              className="
+                flex
+                items-center
+                gap-3
+                text-[10px]
+                font-semibold
+                tracking-[0.3em]
+                text-[#A62C2C]
+                sm:text-xs
+                sm:tracking-[0.4em]
+              "
+            >
+              <span className="h-px w-6 shrink-0 bg-[#A62C2C] sm:w-8" />
+
+              <span>JOURNEY / THE ROAD SO FAR</span>
             </p>
 
-            <h2 className="mt-6 text-5xl font-black leading-none tracking-tight sm:text-6xl md:text-7xl">
+            {/* Heading */}
+
+            <h2
+              className="
+                mt-6
+                text-5xl
+                font-black
+                leading-[0.9]
+                tracking-[-0.04em]
+                text-white
+                sm:text-6xl
+                md:text-7xl
+                lg:text-8xl
+              "
+            >
               THE ROAD
               <br />
               <span className="text-amber-400">SO FAR.</span>
             </h2>
 
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-400">
+            {/* Description */}
+
+            <p
+              className="
+                mt-8
+                max-w-2xl
+                text-base
+                leading-8
+                text-gray-400
+                sm:text-lg
+              "
+            >
               Every experience became another mile. Every problem taught me
               something new. This is the road that shaped how I build.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* ================= TIMELINE ================= */}
+        {/* ================================================= */}
+        {/* TIMELINE */}
+        {/* ================================================= */}
 
-        <div className="relative">
+        <div className="relative min-w-0">
           {/* Vertical Road */}
 
           <div
@@ -80,7 +130,9 @@ function Journey() {
             "
           />
 
-          <div className="space-y-20 md:space-y-24">
+          {/* Timeline Items */}
+
+          <div className="space-y-20 sm:space-y-24 md:space-y-28">
             {journey.map((item, index) => {
               const isEven = index % 2 === 0;
 
@@ -90,24 +142,16 @@ function Journey() {
                   delay={index * 120}
                   direction={isEven ? "left" : "right"}
                 >
-                  <article
-                    className={`
-                      group
-                      relative
-                      grid
-                      gap-8
-                      md:grid-cols-2
-                      md:gap-16
-                      ${!isEven ? "md:[&>div:first-of-type]:order-2" : ""}
-                    `}
-                  >
-                    {/* ================= TIMELINE POINT ================= */}
+                  <article className="group relative min-w-0 md:grid md:grid-cols-2 md:gap-16">
+                    {/* ================================================= */}
+                    {/* TIMELINE POINT */}
+                    {/* ================================================= */}
 
                     <span
                       className="
                         absolute
                         left-0
-                        top-2
+                        top-1
                         z-10
                         h-4
                         w-4
@@ -125,35 +169,84 @@ function Journey() {
                       "
                     />
 
-                    {/* ================= YEAR ================= */}
+                    {/* ================================================= */}
+                    {/* DESKTOP LEFT / YEAR */}
+                    {/* ================================================= */}
 
-                    <div className="pl-10 md:pl-0 md:text-right">
+                    <div
+                      className={`
+                        min-w-0
+                        pl-10
+                        md:pl-0
+                        ${
+                          isEven
+                            ? "md:col-start-1 md:text-right"
+                            : "md:col-start-2 md:row-start-1 md:text-left"
+                        }
+                      `}
+                    >
                       <span
                         className="
                           font-mono
                           text-4xl
                           font-bold
+                          tracking-[-0.05em]
                           text-zinc-800
                           transition-colors
                           duration-500
                           group-hover:text-[#A62C2C]
-                          md:text-5xl
+                          sm:text-5xl
+                          md:text-6xl
                         "
                       >
                         {item.year}
                       </span>
+
+                      {/* Desktop Line */}
+
+                      <div
+                        className={`
+                          mt-4
+                          hidden
+                          md:flex
+                          ${isEven ? "justify-end" : "justify-start"}
+                        `}
+                      >
+                        <span
+                          className="
+                            h-px
+                            w-16
+                            bg-zinc-900
+                            transition-all
+                            duration-500
+                            group-hover:w-24
+                            group-hover:bg-[#A62C2C]
+                          "
+                        />
+                      </div>
                     </div>
 
-                    {/* ================= CONTENT ================= */}
+                    {/* ================================================= */}
+                    {/* CONTENT */}
+                    {/* ================================================= */}
 
                     <div
-                      className="
+                      className={`
                         relative
+                        mt-8
+                        min-w-0
                         pl-10
+                        md:mt-0
+                        md:row-start-1
                         md:pl-0
-                      "
+                        ${
+                          isEven
+                            ? "md:col-start-2"
+                            : "md:col-start-1 md:text-right"
+                        }
+                      `}
                     >
-                      {/* Small red indicator */}
+                      {/* Mobile Indicator */}
 
                       <div
                         className="
@@ -171,34 +264,91 @@ function Journey() {
                         "
                       />
 
-                      <p className="text-xs tracking-[0.3em] text-[#A62C2C]">
-                        0{index + 1} / MILE
+                      {/* Mile Label */}
+
+                      <p
+                        className="
+                          text-[10px]
+                          font-semibold
+                          tracking-[0.3em]
+                          text-[#A62C2C]
+                          sm:text-xs
+                        "
+                      >
+                        {String(index + 1).padStart(2, "0")} / MILE
                       </p>
+
+                      {/* Title */}
 
                       <h3
                         className="
                           mt-3
+                          break-words
                           text-2xl
                           font-black
+                          leading-tight
+                          tracking-[-0.02em]
+                          text-white
                           transition-colors
                           duration-300
                           group-hover:text-amber-400
-                          md:text-3xl
+                          sm:text-3xl
                         "
                       >
                         {item.title}
                       </h3>
 
-                      <p className="mt-4 max-w-xl leading-8 text-gray-500 transition-colors duration-300 group-hover:text-gray-400">
+                      {/* Description */}
+
+                      <p
+                        className="
+                          mt-5
+                          max-w-xl
+                          text-sm
+                          leading-7
+                          text-gray-500
+                          transition-colors
+                          duration-300
+                          group-hover:text-gray-400
+                          sm:text-base
+                          sm:leading-8
+                        "
+                      >
                         {item.description}
                       </p>
 
-                      {/* Mile indicator */}
+                      {/* Mile Indicator */}
 
-                      <div className="mt-6 flex items-center gap-3">
-                        <span className="h-px w-8 bg-zinc-800 transition-all duration-500 group-hover:w-14 group-hover:bg-[#A62C2C]" />
+                      <div
+                        className={`
+                          mt-7
+                          flex
+                          items-center
+                          gap-3
+                          ${isEven ? "md:justify-start" : "md:justify-end"}
+                        `}
+                      >
+                        <span
+                          className="
+                            h-px
+                            w-8
+                            bg-zinc-800
+                            transition-all
+                            duration-500
+                            group-hover:w-14
+                            group-hover:bg-[#A62C2C]
+                          "
+                        />
 
-                        <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-700">
+                        <span
+                          className="
+                            font-mono
+                            text-[9px]
+                            tracking-[0.2em]
+                            text-zinc-700
+                            sm:text-[10px]
+                          "
+                        >
                           MILE {String(index + 1).padStart(2, "0")}
                         </span>
                       </div>
@@ -210,16 +360,55 @@ function Journey() {
           </div>
         </div>
 
-        {/* ================= CLOSING ================= */}
+        {/* ================================================= */}
+        {/* CLOSING */}
+        {/* ================================================= */}
 
         <ScrollReveal delay={300}>
-          <div className="mt-24 border-t border-zinc-800 pt-10">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <span className="text-sm tracking-[0.3em] text-gray-600">
+          <div
+            className="
+              mt-24
+              border-t
+              border-zinc-800
+              pt-8
+              sm:mt-28
+              sm:pt-10
+            "
+          >
+            <div
+              className="
+                flex
+                flex-col
+                gap-4
+                sm:flex-row
+                sm:items-center
+                sm:justify-between
+              "
+            >
+              <span
+                className="
+                  text-[10px]
+                  font-semibold
+                  tracking-[0.3em]
+                  text-gray-600
+                  sm:text-xs
+                "
+              >
                 THE JOURNEY CONTINUES
               </span>
 
-              <span className="font-mono text-sm text-[#A62C2C] transition-colors duration-300 hover:text-amber-400">
+              <span
+                className="
+                  font-mono
+                  text-[10px]
+                  tracking-[0.2em]
+                  text-[#A62C2C]
+                  transition-colors
+                  duration-300
+                  hover:text-amber-400
+                  sm:text-xs
+                "
+              >
                 KEEP RIDING →
               </span>
             </div>
