@@ -1,5 +1,5 @@
 import Button from "../ui/Button";
-import portrait from "../../assets/images/DSC_3013.JPG";
+import portrait from "../../assets/images/profile_photo.jpeg";
 
 function Hero() {
   const scrollToJourney = () => {
